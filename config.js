@@ -15,11 +15,10 @@ global.isBaileysFail = false
 
 global.defaultLenguaje = 'ar';
 
-global.owner = [
-  ['212697516526', '👑 SIMO-KOBA 👑', true],
+global.owner = ['212697516526'];
 
-global.suittag = ['212697516526']
-global.prems = ['212697516526']
+global.suittag = ['212697516526'];
+global.prems = ['212697516526'];
 
 // API (INTERFAZ DE PROGRAMACIÓN DE APLICACIONES)
 global.BASE_API_DELIRIUS = "https://delirius-apiofc.vercel.app";
