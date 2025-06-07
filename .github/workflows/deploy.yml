@@ -42,6 +42,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Fix apt sources (to avoid broken mirrors)
+        run: |
+          sudo sed -i 's|mirror+file:/etc/apt/apt-mirrors.txt|http://archive.ubuntu.com/ubuntu|' /etc/apt/sources.list
+          sudo apt update
+
       - name: Install FFmpeg
         run: sudo apt install -y ffmpeg
 
