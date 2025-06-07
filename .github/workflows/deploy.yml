@@ -42,7 +42,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-            - name: Install FFmpeg
+      - name: Install FFmpeg
         run: sudo apt install -y ffmpeg
 
       - name: Cancel Previous Runs
