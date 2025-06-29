@@ -10,9 +10,9 @@
     "plugins": "plugins"
   },
   "scripts": {
-    "start": "node index.js",
-    "qr": "node index.js qr",
-    "code": "node index.js code",
+    "start": "node --experimental-specifier-resolution=node index.js",
+    "qr": "node --experimental-specifier-resolution=node index.js qr",
+    "code": "node --experimental-specifier-resolution=node index.js code",
     "eslint": "eslint .",
     "eslintfix": "eslint --fix .",
     "postinstall": "node pipdeps.js"
@@ -50,10 +50,10 @@
     "cheerio": "1.0.0-rc.12", 
     "colors": "1.4.0",
     "btch-downloader": "*",
-"@vreden/youtube_scraper":"*",
+    "@vreden/youtube_scraper": "*",
     "notmebotz-tools": "*",
-"node-cache":"*",
-"koja-api":"*",
+    "node-cache": "*",
+    "koja-api": "*",
     "d3-node": "^3.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.3",
@@ -82,7 +82,6 @@
     "node-id3": "^0.2.6",
     "node-shazam": "*",
     "node-webpmux": "^3.1.1",
-    "node-cache": "^5.1.2",
     "openai": "^3.3.0",
     "pdfkit": "^0.13.0",
     "perf_hooks": "^0.0.1",
@@ -103,7 +102,8 @@
     "yargs": "^17.3.1",
     "@hiudyy/ytdl": "^0.2.3",   
     "yt-search": "^2.10.3",
-    "ytdl-core": "github:khlevon/node-ytdl-core#v4.11.4-patch.2"
+    "ytdl-core": "github:khlevon/node-ytdl-core#v4.11.4-patch.2",
+    "css-select": "^5.1.0"
   },
   "optionalDependencies": {
     "@xct007/frieren-scraper": "github:BrunoSobrino/frieren-scraper",
