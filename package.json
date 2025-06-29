@@ -11,8 +11,8 @@
   },
   "scripts": {
     "start": "node --experimental-specifier-resolution=node index.js",
-    "qr": "node --experimental-specifier-resolution=node index.js qr",
-    "code": "node --experimental-specifier-resolution=node index.js code",
+    "qr": "node index.js qr",
+    "code": "node index.js code",
     "eslint": "eslint .",
     "eslintfix": "eslint --fix .",
     "postinstall": "node pipdeps.js"
@@ -47,7 +47,8 @@
     "chalk": "^4.1.2",
     "chats-simsimi": "^0.1.0",
     "chart.js": "4.4.2",
-    "cheerio": "1.0.0-rc.12", 
+    "cheerio": "^1.0.0-rc.12",
+    "css-select": "^4.3.0",
     "colors": "1.4.0",
     "btch-downloader": "*",
     "@vreden/youtube_scraper": "*",
@@ -100,10 +101,9 @@
     "terminal-image": "^2.0.0",
     "url-regex-safe": "^3.0.0",
     "yargs": "^17.3.1",
-    "@hiudyy/ytdl": "^0.2.3",   
+    "@hiudyy/ytdl": "^0.2.3",
     "yt-search": "^2.10.3",
-    "ytdl-core": "github:khlevon/node-ytdl-core#v4.11.4-patch.2",
-    "css-select": "^5.1.0"
+    "ytdl-core": "github:khlevon/node-ytdl-core#v4.11.4-patch.2"
   },
   "optionalDependencies": {
     "@xct007/frieren-scraper": "github:BrunoSobrino/frieren-scraper",
