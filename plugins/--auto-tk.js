@@ -33,7 +33,7 @@ m.reply(wait);
 };
 
 // استخدام RegExp في customPrefix للتحقق من جميع روابط TikTok
-handler.customPrefix = /https:\/\/(www\.)?(vm\.|m\.|www\.)?tiktok\.com\/[^\s]+/;  // تحقق من جميع روابط TikTok
+handler.customPrefix = /https:\/\/(www\.)?(vt\.|m\.|www\.)?tiktok\.com\/[^\s]+/;  // تحقق من جميع روابط TikTok
 handler.command = new RegExp(); // بدون أمر محدد
 
 export default handler;
