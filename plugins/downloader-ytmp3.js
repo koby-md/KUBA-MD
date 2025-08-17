@@ -28,5 +28,5 @@ m.reply(wait);
   }
 };
 
-handler.command = ['yt'];
+handler.command = ['ytmp3'];
 export default handler;
