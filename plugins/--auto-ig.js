@@ -1,10 +1,5 @@
 import fs from 'fs';
-import ffmpeg from 'fluent-ffmpeg';
-import ffmpegPath from 'ffmpeg-static';
 import { igdl } from 'btch-downloader';
-
-// تحديد مسار ffmpeg
-ffmpeg.setFfmpegPath(ffmpegPath);
 
 const handler = async (m, { conn }) => {
     const instagramUrlPattern = /^(https?:\/\/)?(www\.)?(instagram\.com|ig\.me)\/.+$/;
@@ -21,7 +16,6 @@ const handler = async (m, { conn }) => {
 
         for (let i of res) {
             const videoPath = `./src/tmp/instagram_${Date.now()}.mp4`;
-            const audioPath = videoPath.replace('.mp4', '.mp3');
 
             // تنزيل الفيديو
             let buffer = await (await fetch(i.url)).buffer();
@@ -30,26 +24,8 @@ const handler = async (m, { conn }) => {
             // إرسال الفيديو للمستخدم
             await conn.sendFile(m.chat, videoPath, 'instagram.mp4', '*_✅ تم التنزيل!_*', m);
 
-            // استخراج الصوت من الفيديو باستخدام ffmpeg
-            await new Promise((resolve, reject) => {
-                ffmpeg(videoPath)
-                    .output(audioPath)
-                    .toFormat('mp3')
-                    .on('end', resolve)
-                    .on('error', reject)
-                    .run();
-            });
-
-            // إرسال الصوت المستخرج
-            await conn.sendMessage(
-                m.chat,
-                { audio: fs.readFileSync(audioPath), mimetype: 'audio/mpeg', ptt: false}, // إرسال الصوت كـ PTT
-                { quoted: m }
-            );
-
-            // حذف الملفات المؤقتة
+            // حذف الفيديو المؤقت بعد الإرسال
             fs.unlinkSync(videoPath);
-            fs.unlinkSync(audioPath);
         }
     } catch (error) {
         console.error("❌ خطأ أثناء تنزيل فيديو Instagram:", error);
