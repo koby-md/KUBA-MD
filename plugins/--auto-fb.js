@@ -7,6 +7,7 @@ const handler = async (m, { conn }) => {
     if (!messageText) {
         return conn.reply(m.chat, 'يرجى إرسال رابط Facebook لتحميله.', m);
     }
+m.reply(wait);
 
     // استدعاء API لتحميل الفيديو من Facebook
     try {
