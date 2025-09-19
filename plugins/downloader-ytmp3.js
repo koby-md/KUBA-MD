@@ -1,32 +1,39 @@
-import ddownr from 'denethdev-ytmp3';
+import fetch from 'node-fetch'
 
-const handler = async (m, { conn, text }) => {
-  if (!text) {
-    return m.reply(JSON.stringify({ error: 'يرجى إدخال رابط YouTube' }));
-  }
-m.reply(wait);
+let handler = async (m, { conn, text }) => {
+  if (!text) return m.reply('❌ يرجى إدخال رابط يوتيوب')
+
   try {
-    // جلب رابط التحميل مباشرة من رابط الفيديو
-    const result = await ddownr.download(text, 'mp3');
-    const download_url = result.downloadUrl;
-    const title = result.title || 'audio.mp3';
+    const apiUrl = `https://ruby-core.vercel.app/api/download/youtube/mp3?url=${encodeURIComponent(text)}`
+    const res = await fetch(apiUrl)
+    const data = await res.json()
 
-    if (!download_url) {
-      return m.reply(JSON.stringify({ error: 'تعذر استخراج رابط التحميل' }));
-    }
+    if (!data.status) return m.reply('❌ فشل في الحصول على بيانات المقطع')
 
-    // إرسال الملف الصوتي فقط
+    const info = data.metadata
+    const downloadUrl = data.download.url
+    const thumbnailUrl = info.thumbnail
+    const title = info.title
+
+    
+
+
+    // إرسال الصوت كمقطع عادي (audio/mpeg)
     await conn.sendMessage(m.chat, {
-      audio: { url: download_url },
+      audio: { url: downloadUrl },
       mimetype: 'audio/mpeg',
       fileName: `${title}.mp3`
-    }, { quoted: m });
+    }, { quoted: m })
 
-  } catch (e) {
-    console.error(e);
-    m.reply(JSON.stringify({ error: 'حدث خطأ أثناء المعالجة' }));
+  } catch (error) {
+    console.error(error)
+    m.reply(`❌ حدث خطأ: ${error.message}`)
   }
-};
+}
 
-handler.command = ['ytmp3'];
-export default handler;
+handler.help = ['ytmp3 <url>']
+handler.tags = ['downloader']
+handler.command = /^(ytmp3|ytdlmp3)$/i
+handler.limit = false 
+
+export default handler
